@@ -47,22 +47,22 @@ function excuteOperation() {
   if (currentNumber && storedNumber && operation) {
     switch(operation) {
       case '+':
-        storedNumber = parseInt(storedNumber) + parseInt(currentNumber)
+        storedNumber = parseFloat(storedNumber) + parseFloat(currentNumber)
         currentNumber = ''
         updateScreen(storedNumber)
         break
       case '-':
-        storedNumber = parseInt(storedNumber) - parseInt(currentNumber)
+        storedNumber = parseFloat(storedNumber) - parseFloat(currentNumber)
         currentNumber = ''
         updateScreen(storedNumber)
         break
       case '*':
-        storedNumber = parseInt(storedNumber) * parseInt(currentNumber)
+        storedNumber = parseFloat(storedNumber) * parseFloat(currentNumber)
         currentNumber = ''
         updateScreen(storedNumber)
         break
       case '/':
-        storedNumber = parseInt(storedNumber) / parseInt(currentNumber)
+        storedNumber = parseFloat(storedNumber) / parseFloat(currentNumber)
         currentNumber = ''
         updateScreen(storedNumber)
         break
