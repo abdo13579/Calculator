@@ -15,8 +15,17 @@ let currentNumber = ''
 let storedNumber = ''
 let operation = ''
 
+function formatResult(value) {
+  const numericValue = typeof value === 'number' ? value : Number(value)
+
+  if (Number.isNaN(numericValue)) return '0'
+
+  const roundedValue = Number(numericValue.toFixed(10))
+  return Number.isInteger(roundedValue) ? String(roundedValue) : String(roundedValue)
+}
+
 function updateScreen(value) {
-  resultElement.innerText = !value ? '0' : value
+  resultElement.innerText = !value ? '0' : formatResult(value)
 }
 
 function numberButtonHandler(value) {
@@ -45,28 +54,26 @@ function delButtonHandler() {
 
 function excuteOperation() {
   if (currentNumber && storedNumber && operation) {
-    switch(operation) {
+    const currentValue = Number(currentNumber)
+    const storedValue = Number(storedNumber)
+
+    switch (operation) {
       case '+':
-        storedNumber = parseFloat(storedNumber) + parseFloat(currentNumber)
-        currentNumber = ''
-        updateScreen(storedNumber)
+        storedNumber = storedValue + currentValue
         break
       case '-':
-        storedNumber = parseFloat(storedNumber) - parseFloat(currentNumber)
-        currentNumber = ''
-        updateScreen(storedNumber)
+        storedNumber = storedValue - currentValue
         break
       case '*':
-        storedNumber = parseFloat(storedNumber) * parseFloat(currentNumber)
-        currentNumber = ''
-        updateScreen(storedNumber)
+        storedNumber = storedValue * currentValue
         break
       case '/':
-        storedNumber = parseFloat(storedNumber) / parseFloat(currentNumber)
-        currentNumber = ''
-        updateScreen(storedNumber)
+        storedNumber = storedValue / currentValue
         break
     }
+
+    currentNumber = ''
+    updateScreen(storedNumber)
   }
 }
 
